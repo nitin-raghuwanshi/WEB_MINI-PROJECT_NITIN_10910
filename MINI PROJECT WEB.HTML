@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors Game</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .choices button {
+            padding: 12px 18px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .choices button:hover {
+            background: #5a67d8;
+            transform: scale(1.05);
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .result p {
+            font-size: 16px;
+        }
+
+        #winner {
+            margin-top: 12px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Rock Paper Scissors</h1>
+        <p><strong>User vs Computer</strong></p>
+
+        <div class="choices">
+            <button onclick="playGame('Rock')">🪨 Rock</button>
+            <button onclick="playGame('Paper')">📄 Paper</button>
+            <button onclick="playGame('Scissors')">✂️ Scissors</button>
+        </div>
+
+        <div class="result">
+            <p id="userChoice">User Choice: -</p>
+            <p id="computerChoice">Computer Choice: -</p>
+            <div id="winner">Result: -</div>
+        </div>
+    </div>
+
+    <script>
+        function playGame(userChoice) {
+            const choices = ["Rock", "Paper", "Scissors"];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+            document.getElementById("userChoice").innerText =
+                "User Choice: " + userChoice;
+            document.getElementById("computerChoice").innerText =
+                "Computer Choice: " + computerChoice;
+
+            let result = "";
+
+            if (userChoice === computerChoice) {
+                result = "🤝 It's a Draw!";
+            }
+            else if (
+                (userChoice === "Rock" && computerChoice === "Scissors") ||
+                (userChoice === "Paper" && computerChoice === "Rock") ||
+                (userChoice === "Scissors" && computerChoice === "Paper")
+            ) {
+                result = "🎉 You Win!";
+            }
+            else {
+                result = "😢 Computer Wins!";
+            }
+
+            document.getElementById("winner").innerText = "Result: " + result;
+        }
+    </script>
+
+</body>
+</html>
